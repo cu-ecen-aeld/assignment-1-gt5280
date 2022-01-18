@@ -1,0 +1,28 @@
+#!/bin/bash
+filespath=$1
+writestr=$2
+
+if [ $# -eq 1 ] || [ $# -eq 0 ]
+then
+	echo "FAILED, missing arguments"
+	exit 1
+fi
+
+if [ -f $filespath ]
+then	
+		echo "$writestr" > $filespath
+		#echo "search string is $searchstr"
+		#echo "$filesnum"
+	#echo "The number of files is $filescount and the number of matching lines are $linematch"
+else
+	touch $filespath | echo "$writestr" > $filespath
+fi
+
+if [ -f $filespath ]
+then
+	exit 0
+else
+	echo "FAILED, file could not be created"
+	exit 1
+fi
+	
